@@ -30,7 +30,7 @@ class HomeActivity : AppCompatActivity() {
         }
 
         logoutButton.setOnClickListener {
-            
+
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }

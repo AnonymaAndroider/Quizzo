@@ -5,23 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/my_animation"
-    android:id="@+id/myLayout"
+    android:id="@+id/homeLayout"
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/signUpButton"
+        android:id="@+id/highScoreButton"
         android:layout_width="175dp"
         android:layout_height="45dp"
         android:layout_marginTop="88dp"
-        android:text="@string/sign_up"
+        android:text="@string/highscore"
         android:background="@drawable/rounded_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginButton" />
+        app:layout_constraintTop_toBottomOf="@+id/playButton" />
 
     <TextView
-        android:id="@+id/quizzoTitle"
+        android:id="@+id/quizzoTitle2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
@@ -33,27 +33,38 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/loginButton"
+        android:id="@+id/playButton"
         android:layout_width="181dp"
         android:layout_height="49dp"
         android:layout_marginTop="96dp"
-        android:text="Login"
+        android:text="@string/play"
         android:background="@drawable/rounded_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/quizzoTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/quizzoTitle2" />
 
     <Button
-        android:id="@+id/guestButton"
+        android:id="@+id/helpButton"
         android:layout_width="175dp"
         android:layout_height="45dp"
         android:layout_marginTop="200dp"
-        android:text="@string/continue_as_guest"
+        android:text="@string/help"
         android:background="@drawable/rounded_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginButton"
+        app:layout_constraintTop_toBottomOf="@+id/playButton"
         app:layout_constraintVertical_bias="0.066" />
+
+    <Button
+        android:id="@+id/logoutButton"
+        android:layout_width="175dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="80dp"
+        android:background="@drawable/rounded_button"
+        android:text="@string/logout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/helpButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
