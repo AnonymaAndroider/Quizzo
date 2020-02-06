@@ -1,3 +1,33 @@
 <resources>
     <string name="app_name">Quizzo</string>
+    <string name="title_activity_login">Login</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="Username">Username</string>
+    <string name="Login">Login</string>
+    <string name="Signup">Sign up</string>
+    <string name="usernameToLong">To long!</string>
+    <string name="highscore">Highscore</string>
+    <string name="help">Help</string>
+    <string name="logout">Logout</string>
+    <string name="play">Play</string>
+    <string name="sign_up">Sign up</string>
+    <string name="quizzo">QUIZZO</string>
+    <string name="continue_as_guest">Continue as guest</string>
+    <string name="choose_theme">Choose theme:</string>
+    <string name="games">Games</string>
+    <string name="food">Food</string>
+    <string name="tv_shows">Tv-shows</string>
+    <string name="easy">Easy</string>
+    <string name="hard">Hard</string>
+    <string name="medium">Medium</string>
+    <string name="go">GO!</string>
+    <string name="sport">Sport</string>
+    <string name="geography">Geography</string>
+    <string name="choose_difficulty">Choose difficulty:</string>
 </resources>
