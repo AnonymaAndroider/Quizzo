@@ -29,6 +29,24 @@ class HomeActivity : AppCompatActivity() {
             logoutButton.isEnabled = false
         }
 
+        playButton.setOnClickListener {
+
+            val intent = Intent(this, PlayActivity::class.java)
+            startActivity(intent)
+        }
+
+        highScoreButton.setOnClickListener{
+
+            val intent = Intent(this, HighscoreActivity::class.java)
+            startActivity(intent)
+        }
+
+        helpButton.setOnClickListener {
+
+            val intent = Intent(this, HelpActivity::class.java)
+            startActivity(intent)
+        }
+
         logoutButton.setOnClickListener {
 
             val intent = Intent(this, MainActivity::class.java)

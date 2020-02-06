@@ -19,4 +19,15 @@
     <string name="sign_up">Sign up</string>
     <string name="quizzo">QUIZZO</string>
     <string name="continue_as_guest">Continue as guest</string>
+    <string name="choose_theme">Choose theme:</string>
+    <string name="games">Games</string>
+    <string name="food">Food</string>
+    <string name="tv_shows">Tv-shows</string>
+    <string name="easy">Easy</string>
+    <string name="hard">Hard</string>
+    <string name="medium">Medium</string>
+    <string name="go">GO!</string>
+    <string name="sport">Sport</string>
+    <string name="geography">Geography</string>
+    <string name="choose_difficulty">Choose difficulty:</string>
 </resources>
