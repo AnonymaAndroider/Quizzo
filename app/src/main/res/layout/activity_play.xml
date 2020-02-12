@@ -40,8 +40,7 @@
             android:text="@string/geography"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/ThemeRadioGroup"
-            app:layout_constraintVertical_bias="0.267" />
+            app:layout_constraintTop_toTopOf="@id/ThemeRadioGroup" />
 
         <RadioButton
             android:id="@+id/sportButton"
@@ -52,8 +51,7 @@
             android:text="@string/sport"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/geographyButton"
-            app:layout_constraintVertical_bias="0" />
+            app:layout_constraintTop_toTopOf="@id/geographyButton" />
 
         <RadioButton
             android:id="@+id/foodButton"
@@ -62,7 +60,6 @@
             android:layout_marginTop="28dp"
             android:text="@string/food"
             app:layout_constraintEnd_toStartOf="@+id/geographyButton"
-            app:layout_constraintHorizontal_bias="parent"
             app:layout_constraintStart_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/sportButton" />
 
@@ -74,7 +71,6 @@
             android:layout_marginTop="20dp"
             android:text="@string/games"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/sportButton" />
 
@@ -85,7 +81,6 @@
             android:layout_marginTop="20dp"
             android:text="@string/tv_shows"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="parent"
             app:layout_constraintStart_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/gamesButton" />
 
@@ -98,7 +93,6 @@
         android:layout_marginTop="24dp"
         android:paddingLeft="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/chooseDifficulty">
 
@@ -109,7 +103,6 @@
             android:layout_marginTop="20dp"
             android:text="@string/easy"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.292"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/DifficultyRadioGroup" />
 
@@ -120,7 +113,6 @@
             android:layout_marginTop="4dp"
             android:text="@string/medium"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.31"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/easyButton" />
 
@@ -131,7 +123,6 @@
             android:layout_marginTop="4dp"
             android:text="@string/hard"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.331"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/mediumButton" />
 
@@ -146,7 +137,6 @@
         android:text="@string/go"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.369"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/DifficultyRadioGroup" />
 
@@ -159,7 +149,6 @@
         android:textSize="20sp"
         android:text="@string/choose_difficulty"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.053"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ThemeRadioGroup" />
 
@@ -172,7 +161,6 @@
         android:textSize="20sp"
         android:text="@string/choose_theme"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/quizzoTitle3" />
 
