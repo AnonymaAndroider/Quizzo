@@ -10,17 +10,26 @@ import kotlinx.android.synthetic.main.activity_play.*
 
 class PlayActivity : AppCompatActivity() {
 
+    private fun startActivity(activity: Class<*>, radioButtonId: Int) {
+        val intent = Intent(this, activity)
+        intent.putExtra("checkedRadioButtonID", radioButtonId)
+        startActivity(intent)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_play)
 
         val radioThemeGroup = findViewById<RadioGroup>(R.id.ThemeRadioGroup)
         val radioDifficultyGroup = findViewById<RadioGroup>(R.id.DifficultyRadioGroup)
+
         radioThemeGroup.setOnCheckedChangeListener { group, checkedId ->
             val radio : RadioButton = findViewById(checkedId)
+
             when(radio){
                 sportButton -> {
                     Toast.makeText(this, "Sport", Toast.LENGTH_SHORT).show()
+
                 }
                 geographyButton -> {
                     Toast.makeText(this, "Geography", Toast.LENGTH_SHORT).show()
@@ -53,6 +62,14 @@ class PlayActivity : AppCompatActivity() {
 
 
         goButton.setOnClickListener {
+
+            when {
+                geographyButton.isChecked -> startActivity(AnswerActivity::class.java, 1)
+                sportButton.isChecked -> startActivity(AnswerActivity::class.java, 2)
+                foodButton.isChecked -> startActivity(AnswerActivity::class.java, 3)
+                tvShowsButton.isChecked -> startActivity(AnswerActivity::class.java, 4)
+                gamesButton.isChecked -> startActivity(AnswerActivity::class.java, 5)
+            }
 
             val intent = Intent(this, AnswerActivity::class.java)
             startActivity(intent)
