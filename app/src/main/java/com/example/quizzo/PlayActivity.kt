@@ -20,6 +20,8 @@ class PlayActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_play)
 
+        val sport = 21
+
         val radioThemeGroup = findViewById<RadioGroup>(R.id.ThemeRadioGroup)
         val radioDifficultyGroup = findViewById<RadioGroup>(R.id.DifficultyRadioGroup)
 
@@ -63,12 +65,20 @@ class PlayActivity : AppCompatActivity() {
 
         goButton.setOnClickListener {
 
-            when {
+            /*when {
                 geographyButton.isChecked -> startActivity(AnswerActivity::class.java, 1)
                 sportButton.isChecked -> startActivity(AnswerActivity::class.java, 2)
                 foodButton.isChecked -> startActivity(AnswerActivity::class.java, 3)
                 tvShowsButton.isChecked -> startActivity(AnswerActivity::class.java, 4)
                 gamesButton.isChecked -> startActivity(AnswerActivity::class.java, 5)
+            }*/
+
+            if(sportButton.isChecked && mediumButton.isChecked){
+
+                val intent = Intent(this, AnswerActivity::class.java)
+                intent.putExtra("sport", sport)
+                intent.putExtra("medium", "medium")
+                startActivity(intent)
             }
 
             val intent = Intent(this, AnswerActivity::class.java)
