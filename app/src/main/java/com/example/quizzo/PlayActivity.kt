@@ -10,9 +10,18 @@ import kotlinx.android.synthetic.main.activity_play.*
 
 class PlayActivity : AppCompatActivity() {
 
-    private fun startActivity(activity: Class<*>, radioButtonId: Int) {
-        val intent = Intent(this, activity)
-        intent.putExtra("checkedRadioButtonID", radioButtonId)
+    companion object {
+        const val sport = 21
+        const val generalKnowledge = 9
+        const val geography = 22
+        const val videoGames = 15
+        const val film = 11
+    }
+
+    private fun sendThemeAndDifficulty(theme: Int, difficulty: String) {
+        val intent = Intent(this, AnswerActivity::class.java)
+        intent.putExtra("theme", theme)
+        intent.putExtra("difficulty", difficulty)
         startActivity(intent)
     }
 
@@ -36,17 +45,18 @@ class PlayActivity : AppCompatActivity() {
                 geographyButton -> {
                     Toast.makeText(this, "Geography", Toast.LENGTH_SHORT).show()
                 }
-                foodButton -> {
+                videoGamesButton -> {
                     Toast.makeText(this, "Food", Toast.LENGTH_SHORT).show()
                 }
-                tvShowsButton -> {
+                filmButton -> {
                     Toast.makeText(this, "Tv-shows", Toast.LENGTH_SHORT).show()
                 }
-                gamesButton -> {
+                generalKnowledgeButton -> {
                     Toast.makeText(this, "Games", Toast.LENGTH_SHORT).show()
                 }
             }
         }
+
         radioDifficultyGroup.setOnCheckedChangeListener { group, checkedId ->
             val radio : RadioButton = findViewById(checkedId)
             when(radio){
@@ -65,29 +75,27 @@ class PlayActivity : AppCompatActivity() {
 
         goButton.setOnClickListener {
 
-            /*when {
-                geographyButton.isChecked -> startActivity(AnswerActivity::class.java, 1)
-                sportButton.isChecked -> startActivity(AnswerActivity::class.java, 2)
-                foodButton.isChecked -> startActivity(AnswerActivity::class.java, 3)
-                tvShowsButton.isChecked -> startActivity(AnswerActivity::class.java, 4)
-                gamesButton.isChecked -> startActivity(AnswerActivity::class.java, 5)
-            }*/
+            when {
+                geographyButton.isChecked && easyButton.isChecked -> sendThemeAndDifficulty(geography, "easy")
+                geographyButton.isChecked && mediumButton.isChecked -> sendThemeAndDifficulty(geography, "medium")
+                geographyButton.isChecked && hardButton.isChecked -> sendThemeAndDifficulty(geography, "hard")
 
-            if(sportButton.isChecked && mediumButton.isChecked){
+                sportButton.isChecked && easyButton.isChecked -> sendThemeAndDifficulty(sport, "easy")
+                sportButton.isChecked && mediumButton.isChecked -> sendThemeAndDifficulty(sport, "medium")
+                sportButton.isChecked && hardButton.isChecked -> sendThemeAndDifficulty(sport, "hard")
 
-                val intent = Intent(this, AnswerActivity::class.java)
-                intent.putExtra("sport", sport)
-                intent.putExtra("medium", "medium")
-                startActivity(intent)
+                filmButton.isChecked  && easyButton.isChecked -> sendThemeAndDifficulty(film, "easy")
+                filmButton.isChecked  && mediumButton.isChecked -> sendThemeAndDifficulty(film, "medium")
+                filmButton.isChecked  && hardButton.isChecked -> sendThemeAndDifficulty(film, "hard")
+
+                generalKnowledgeButton.isChecked && easyButton.isChecked -> sendThemeAndDifficulty(generalKnowledge, "easy")
+                generalKnowledgeButton.isChecked && mediumButton.isChecked -> sendThemeAndDifficulty(generalKnowledge, "medium")
+                generalKnowledgeButton.isChecked && hardButton.isChecked -> sendThemeAndDifficulty(generalKnowledge, "hard")
+
+                videoGamesButton.isChecked && easyButton.isChecked -> sendThemeAndDifficulty(videoGames, "easy")
+                videoGamesButton.isChecked && mediumButton.isChecked -> sendThemeAndDifficulty(videoGames, "medium")
+                videoGamesButton.isChecked && hardButton.isChecked -> sendThemeAndDifficulty(videoGames, "hard")
             }
-
-            val intent = Intent(this, AnswerActivity::class.java)
-            startActivity(intent)
         }
-
-    }
-
-    companion object {
-        const val sport = 21
     }
 }

@@ -1,24 +1,17 @@
 package com.example.quizzo
 
-import android.app.Activity
-import android.content.Intent
-import android.graphics.Color
-import android.icu.util.DateInterval
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.os.Handler
 import android.util.Log
 import android.widget.Button
-import android.widget.ProgressBar
-import android.widget.TextView
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.activity_answer.*
 import okhttp3.*
 import java.io.IOException
 import java.util.Collections.shuffle
-import java.util.concurrent.TimeoutException
-import kotlin.concurrent.timer
+
 
 
 data class TriviaRequest (
@@ -47,18 +40,6 @@ class AnswerActivity : AppCompatActivity() {
     private val millisInFuture = 11000
     private val countDownInterval = 100
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_answer)
-
-        fetch{
-
-            Log.d("fetchDOne", "fetch is done with task")
-            barProgressTimer()
-        }
-    }
-
     private fun barProgressTimer(){
 
         progressCount = 0
@@ -68,7 +49,7 @@ class AnswerActivity : AppCompatActivity() {
             override fun onFinish() {
                 counter.cancel()
                 fetch {
-                   barProgressTimer()
+                    barProgressTimer()
                 }
             }
 
@@ -88,10 +69,14 @@ class AnswerActivity : AppCompatActivity() {
 
     private fun fetch(callback: ()->Unit){
 
-        val theme = intent.getIntExtra("sport", 21)
-        val difficulty = intent.getStringExtra("medium")
+        val theme = intent.getIntExtra("theme", 0)
+        val difficulty = intent.getStringExtra("difficulty")
 
-        val url = "https://opentdb.com/api.php?amount=10&category=21&difficulty=medium&type=multiple"
+        Log.d("theme:", theme.toString())
+        Log.d("difficulty:", difficulty)
+
+        val url = "https://opentdb.com/api.php?amount=10&category=$theme&difficulty=$difficulty&type=multiple"
+        Log.d("url:", url)
         val request = Request.Builder()
             .url(url)
             .build()
@@ -209,4 +194,18 @@ class AnswerActivity : AppCompatActivity() {
         })
         callback()
     }
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_answer)
+
+        fetch{
+
+            Log.d("fetchDOne", "fetch is done with task")
+            barProgressTimer()
+        }
+    }
+
+
 }

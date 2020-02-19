@@ -30,4 +30,7 @@
     <string name="sport">Sport</string>
     <string name="geography">Geography</string>
     <string name="choose_difficulty">Choose difficulty:</string>
+    <string name="general_knowledge">General Knowledge</string>
+    <string name="video_games">Video games</string>
+    <string name="film">Film</string>
 </resources>

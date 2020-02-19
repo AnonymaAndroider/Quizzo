@@ -54,35 +54,35 @@
             app:layout_constraintTop_toTopOf="@id/geographyButton" />
 
         <RadioButton
-            android:id="@+id/foodButton"
+            android:id="@+id/generalKnowledgeButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
-            android:text="@string/food"
+            android:text="@string/general_knowledge"
             app:layout_constraintEnd_toStartOf="@+id/geographyButton"
             app:layout_constraintStart_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/sportButton" />
 
 
         <RadioButton
-            android:id="@+id/gamesButton"
+            android:id="@+id/videoGamesButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="@string/games"
+            android:text="@string/video_games"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/sportButton" />
 
         <RadioButton
-            android:id="@+id/tvShowsButton"
+            android:id="@+id/filmButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="@string/tv_shows"
+            android:text="@string/film"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/gamesButton" />
+            app:layout_constraintTop_toBottomOf="@+id/videoGamesButton" />
 
     </RadioGroup>
 
@@ -154,12 +154,12 @@
 
     <TextView
         android:id="@+id/chooseTheme"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="203dp"
+        android:layout_height="38dp"
         android:layout_marginTop="36dp"
-        android:textStyle="bold"
-        android:textSize="20sp"
         android:text="@string/choose_theme"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/quizzoTitle3" />
