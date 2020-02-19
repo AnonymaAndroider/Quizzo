@@ -56,7 +56,7 @@
         android:id="@+id/questionText"
         android:layout_width="340dp"
         android:layout_height="184dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="28dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
@@ -67,10 +67,10 @@
         android:layout_width="164dp"
         android:layout_height="39dp"
         android:layout_marginTop="52dp"
-        android:textSize="20sp"
+        android:textSize="30sp"
         app:fontFamily="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.631"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/quizzoTitle4" />
 
@@ -78,13 +78,27 @@
         android:id="@+id/quizzoTitle4"
         android:layout_width="155dp"
         android:layout_height="66dp"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="44dp"
         android:text="@string/quizzo"
         android:textSize="40sp"
         app:fontFamily="cursive"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="257dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="16dp"
+        android:progressTint="#FFEB3B"
+        android:indeterminate="false"
+        app:layout_constraintBottom_toTopOf="@+id/alternative2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/questionText"
+        app:layout_constraintVertical_bias="0.074" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,11 +16,11 @@ class PlayActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_play)
 
-        val sport = 21
 
         val radioThemeGroup = findViewById<RadioGroup>(R.id.ThemeRadioGroup)
         val radioDifficultyGroup = findViewById<RadioGroup>(R.id.DifficultyRadioGroup)
@@ -85,5 +85,9 @@ class PlayActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+    }
+
+    companion object {
+        const val sport = 21
     }
 }
