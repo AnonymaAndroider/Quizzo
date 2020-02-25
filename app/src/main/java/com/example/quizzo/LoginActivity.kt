@@ -8,6 +8,8 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.widget.EditText
+import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
@@ -16,51 +18,34 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        val myUsername = "Admin"
-        val myPassword = "abc123"
-        var isLoggedIn = false
-
-        loginUsername.addTextChangedListener(object : TextWatcher {
-
-            override fun afterTextChanged(s: Editable?) {
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
-                if(count > 10){
-                    loginUsername.error = getString(R.string.usernameToLong)
-                    loginButton.isEnabled = false
-                }
-                if(count == 0){
-                    loginButton.isEnabled = false
-                }
-
-                if(count in 1..10){
-                    loginButton.isEnabled = true
-                }
-            }
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
-            }
-        })
+        val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
         loginButton.setOnClickListener {
 
-            val username = loginUsername.findViewById<EditText>(
-                R.id.loginUsername
+            val email = loginEmail.findViewById<EditText>(
+                R.id.loginEmail
             ).editableText.toString()
 
             val password = loginPassword.findViewById<EditText>(
                 R.id.loginPassword
             ).editableText.toString()
 
-            if(username == myUsername && password == myPassword){
-                isLoggedIn = true
-                val intent = Intent(this, HomeActivity::class.java)
-                intent.putExtra("LoggedIn", isLoggedIn)
-                startActivity(intent)
-            }
+            auth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this) { task ->
+                    if (task.isSuccessful) {
+                        val user = auth.currentUser
+                        val intent = Intent(this, HomeActivity::class.java)
+                        intent.putExtra("LoggedIn", true)
+                        startActivity(intent)
+                        finish()
+                    } else {
+                        Toast.makeText(
+                            baseContext,
+                            "Login failed or account does not exist",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
         }
     }
 }

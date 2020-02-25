@@ -1,9 +1,16 @@
 package com.example.quizzo
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
+import android.widget.EditText
+import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.core.Tag
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_sign_up.*
 
@@ -13,31 +20,55 @@ class SignUpActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
 
-        signUpUsername.addTextChangedListener(object : TextWatcher {
+        var auth: FirebaseAuth = FirebaseAuth.getInstance()
 
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+        SignUpButton.setOnClickListener{
 
+            val email = signUpEmail.findViewById<EditText>(
+                R.id.signUpEmail
+            ).editableText.toString()
+
+            val username = signUpUsername.findViewById<EditText>(
+                R.id.signUpUsername
+            ).editableText.toString()
+
+            val password = signUpPassword.findViewById<EditText>(
+                R.id.signUpPassword
+            ).editableText.toString()
+
+            val passwordCheck = signUpPasswordRepeat.findViewById<EditText>(
+                R.id.signUpPasswordRepeat
+            ).editableText.toString()
+
+            if(email.length < 5){
+                Toast.makeText(this, "Please enter a valid email", Toast.LENGTH_SHORT).show()
             }
 
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
-                if(count == 0){
-                    signUpButton.isEnabled = false
-                }
-
-                if(count > 10){
-                    signUpButton.isEnabled = false
-                    signUpUsername.error = getString(R.string.usernameToLong)
-                }
-
-                if(count in 1..10){
-                    signUpButton.isEnabled = true
-                }
+            else if(username.length < 2){
+                Toast.makeText(this, "Username must be at least 2 characters", Toast.LENGTH_SHORT).show()
             }
 
-            override fun afterTextChanged(s: Editable?) {
-
+            else if(password.length < 5){
+                Toast.makeText(this, "Password must be at least 5 characters", Toast.LENGTH_SHORT).show()
             }
-        })
+
+            else if(password != passwordCheck){
+                Toast.makeText(this, "Password does not match", Toast.LENGTH_SHORT).show()
+            }
+
+            else{
+                auth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this){ task ->
+                        if(task.isSuccessful){
+                            val user = auth.currentUser
+                            val intent = Intent(this, LoginActivity::class.java)
+                            startActivity(intent)
+                            finish()
+                        } else{
+                            Toast.makeText(this, "Failed signing up, try again", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+            }
+        }
     }
 }
