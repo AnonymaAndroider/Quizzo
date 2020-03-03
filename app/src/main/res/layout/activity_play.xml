@@ -19,115 +19,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <RadioGroup
-        android:id="@+id/ThemeRadioGroup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:paddingLeft="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chooseTheme">
-
-
-        <RadioButton
-            android:id="@+id/geographyButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="48dp"
-            android:layout_marginRight="48dp"
-            android:text="@string/geography"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/ThemeRadioGroup" />
-
-        <RadioButton
-            android:id="@+id/sportButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
-            android:layout_marginLeft="0dp"
-            android:text="@string/sport"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/geographyButton" />
-
-        <RadioButton
-            android:id="@+id/generalKnowledgeButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:text="@string/general_knowledge"
-            app:layout_constraintEnd_toStartOf="@+id/geographyButton"
-            app:layout_constraintStart_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sportButton" />
-
-
-        <RadioButton
-            android:id="@+id/videoGamesButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="@string/video_games"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sportButton" />
-
-        <RadioButton
-            android:id="@+id/filmButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="@string/film"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/videoGamesButton" />
-
-    </RadioGroup>
-
-    <RadioGroup
-        android:id="@+id/DifficultyRadioGroup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:paddingLeft="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chooseDifficulty">
-
-        <RadioButton
-            android:id="@+id/easyButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="@string/easy"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/DifficultyRadioGroup" />
-
-        <RadioButton
-            android:id="@+id/mediumButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="@string/medium"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/easyButton" />
-
-        <RadioButton
-            android:id="@+id/hardButton"
-            android:layout_width="105dp"
-            android:layout_height="33dp"
-            android:layout_marginTop="4dp"
-            android:text="@string/hard"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mediumButton" />
-
-    </RadioGroup>
-
     <Button
         android:id="@+id/goButton"
         android:layout_width="151dp"
@@ -137,20 +28,19 @@
         android:text="@string/go"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/DifficultyRadioGroup" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/chooseDifficulty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:textStyle="bold"
-        android:textSize="20sp"
         android:text="@string/choose_difficulty"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/goButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ThemeRadioGroup" />
+        app:layout_constraintTop_toBottomOf="@+id/chooseTheme" />
 
     <TextView
         android:id="@+id/chooseTheme"
@@ -163,6 +53,75 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/quizzoTitle3" />
+
+    <RadioGroup
+        android:id="@+id/themeRadioGroup"
+        android:layout_width="367dp"
+        android:layout_height="243dp"
+        app:layout_constraintBottom_toTopOf="@+id/chooseDifficulty"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chooseTheme">
+
+        <RadioButton
+            android:id="@+id/sportButton"
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            android:text="@string/sport" />
+
+        <RadioButton
+            android:id="@+id/geographyButton"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:text="@string/geography" />
+
+        <RadioButton
+            android:id="@+id/filmButton"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:text="@string/film" />
+
+        <RadioButton
+            android:id="@+id/videoGamesButton"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:text="@string/video_games" />
+
+        <RadioButton
+            android:id="@+id/generalKnowledgeButton"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:text="@string/general_knowledge" />
+
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/difficultyRadioGroup"
+        android:layout_width="359dp"
+        android:layout_height="150dp"
+        app:layout_constraintBottom_toTopOf="@+id/goButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chooseDifficulty" >
+
+        <RadioButton
+            android:id="@+id/easyButton"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:text="@string/easy" />
+
+        <RadioButton
+            android:id="@+id/mediumButton"
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            android:text="@string/medium" />
+
+        <RadioButton
+            android:id="@+id/hardButton"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:text="@string/hard" />
+    </RadioGroup>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

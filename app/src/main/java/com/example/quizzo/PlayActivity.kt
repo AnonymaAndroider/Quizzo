@@ -31,8 +31,8 @@ class PlayActivity : AppCompatActivity() {
         setContentView(R.layout.activity_play)
 
 
-        val radioThemeGroup = findViewById<RadioGroup>(R.id.ThemeRadioGroup)
-        val radioDifficultyGroup = findViewById<RadioGroup>(R.id.DifficultyRadioGroup)
+        val radioThemeGroup = findViewById<RadioGroup>(R.id.themeRadioGroup)
+        val radioDifficultyGroup = findViewById<RadioGroup>(R.id.difficultyRadioGroup)
 
         radioThemeGroup.setOnCheckedChangeListener { group, checkedId ->
             val radio : RadioButton = findViewById(checkedId)
