@@ -46,29 +46,39 @@ class AnswerActivity : AppCompatActivity() {
     private val millisInFuture = 11000
     private val countDownInterval = 100
     private var token: String = ""
+    private var onResumeCalled = true
 
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_answer)
-        val loadBar = findViewById<ProgressBar>(R.id.loadBar)
-        Thread(Runnable {
-            runOnUiThread {
-                loadBar.visibility = View.VISIBLE
-            }
-            try {
-                Thread.sleep(3000)
-                startQuiz()
-            } catch (e: InterruptedException){
-                e.printStackTrace()
-            }
-            runOnUiThread{
-                loadBar.visibility = View.GONE
-            }
+        Log.d("inside onCreate", "Inside onCreate")
+        onResumeCalled = false
+        val resumeTrue = intent.getBooleanExtra("onResumeCalled", false)
+        onResumeCalled = resumeTrue
+        Log.d("onResumeCalled OnCretae", onResumeCalled.toString())
+        if(!onResumeCalled) {
+            val loadBar = findViewById<ProgressBar>(R.id.loadBar)
+            Thread(Runnable {
+                runOnUiThread {
+                    loadBar.visibility = View.VISIBLE
+                }
+                try {
+                    Thread.sleep(3000)
+                    startQuiz()
+                } catch (e: InterruptedException) {
+                    e.printStackTrace()
+                }
+                runOnUiThread {
+                    loadBar.visibility = View.GONE
+                }
 
-        }).start()
+            }).start()
+        }
     }
+
+
 
     override fun onPause() {
         super.onPause()
@@ -82,37 +92,43 @@ class AnswerActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        cancelCallToAPI()
         Log.d("onDestroy", "Inside destroy")
+        cancelCallToAPI()
 
 
     }
 
     override fun onResume() {
         super.onResume()
-
-        val retryToken = intent.getStringExtra("token")
-        if(retryToken != null){
-            token = retryToken
-            Log.d("retryToken", token)
-            val loadBar = findViewById<ProgressBar>(R.id.loadBar)
-            Thread(Runnable {
-                runOnUiThread {
-                    loadBar.visibility = View.VISIBLE
-                }
-                try {
-                    Thread.sleep(3000)
-                    fetchQuestions(token){
-                        barProgressTimer()
+        Log.d("inside onresume", "Inside onResume()")
+        val resumeTrue = intent.getBooleanExtra("onResumeCalled", false)
+        onResumeCalled = resumeTrue
+        Log.d("onResumeCalled OnResume", onResumeCalled.toString())
+        if(onResumeCalled){
+            Log.d("inside if onresume", "Inside if statement in onResume")
+            val retryToken = intent.getStringExtra("token")
+            if(retryToken != null){
+                token = retryToken
+                Log.d("retryToken", token)
+                val loadBar = findViewById<ProgressBar>(R.id.loadBar)
+                Thread(Runnable {
+                    runOnUiThread {
+                        loadBar.visibility = View.VISIBLE
                     }
-                } catch (e: InterruptedException){
-                    e.printStackTrace()
-                }
-                runOnUiThread{
-                    loadBar.visibility = View.GONE
-                }
+                    try {
+                        Thread.sleep(3000)
+                        fetchQuestions(token){
+                            barProgressTimer()
+                        }
+                    } catch (e: InterruptedException){
+                        e.printStackTrace()
+                    }
+                    runOnUiThread{
+                        loadBar.visibility = View.GONE
+                    }
 
-            }).start()
+                }).start()
+            }
         }
     }
 
@@ -125,7 +141,6 @@ class AnswerActivity : AppCompatActivity() {
         intent.putExtra("token", token)
         startActivity(intent)
         finish()
-        cancelCallToAPI()
     }
 
     private fun barProgressTimer(){
@@ -182,7 +197,6 @@ class AnswerActivity : AppCompatActivity() {
 
             override fun onResponse(call: Call, response: Response) {
 
-                Log.d("response", "inside response")
                 val body = response.body?.string()
                 val gson = GsonBuilder().create()
                 val triviaRequest = gson.fromJson(body, TriviaResult::class.java)
@@ -199,13 +213,17 @@ class AnswerActivity : AppCompatActivity() {
 
     private fun cancelCallToAPI(){
         Log.d("cancelCall", "inside cancelCalls")
+        Log.d("client before:", client.toString())
         for(call : Call in client.dispatcher.runningCalls() ){
             Log.d("runningcalls", "inside runningcalls")
             if(call.request().tag()?.equals("FetchQuestions")!!){
+                Log.d("inside if", "Inside if fetchquestions")
                 call.cancel()
+                Log.d("client after:", client.toString())
 
             }
             if(call.request().tag()?.equals("FetchTokens")!!){
+                Log.d("inside if", "Inside if fetchtoken")
                 call.cancel()
             }
         }
@@ -213,7 +231,6 @@ class AnswerActivity : AppCompatActivity() {
             Log.d("queuedcalls", "inside queuedcalls")
             if(call.request().tag()?.equals("FetchQuestions")!!){
                 call.cancel()
-
             }
             if(call.request().tag()?.equals("FetchTokens")!!){
                 call.cancel()
@@ -229,22 +246,20 @@ class AnswerActivity : AppCompatActivity() {
 
         //val resetToken = "https://opntdb.com/api_token.php?command=reset&token=$token"
         val url = "https://opentdb.com/api.php?amount=1&category=$theme&difficulty=$difficulty&type=multiple&token=$aToken"
-        Log.d("url:", url)
+        Log.d("token:", aToken)
         val request = Request.Builder()
             .url(url).tag("FetchQuestions")
             .build()
+        //Log.d("request", request.toString())
         client.newCall(request).enqueue(object: Callback {
 
             override fun onResponse(call: Call, response: Response) {
 
                 val body = response.body?.string()
-                Log.d("body", body)
                 val gson = GsonBuilder().create()
                 val triviaRequest = gson.fromJson(body, TriviaRequest::class.java)
                 val result = triviaRequest.results[0]
-                Log.d("result:", result.toString())
                 val question = result.question.toSpanned()
-                Log.d("question:", question.toString())
                 val questionCategory = result.category.toSpanned()
                 val correctAnswer = result.correct_answer.toSpanned()
                 val incorrectAnswer1 = result.incorrect_answers[0].toSpanned()
@@ -256,7 +271,7 @@ class AnswerActivity : AppCompatActivity() {
                     incorrectAnswer2,
                     incorrectAnswer3
                 )
-                Log.d("questions", alternatives.toString())
+
                 shuffle(alternatives)
 
                 runOnUiThread {

@@ -32,10 +32,12 @@ class ShowScoreActivity : AppCompatActivity() {
 
 
         retryButton.setOnClickListener {
+            var onResumeCalled = true
             val intent = Intent(this, AnswerActivity::class.java)
             intent.putExtra("theme", theme)
             intent.putExtra("difficulty", difficulty)
             intent.putExtra("token", token)
+            intent.putExtra("onResumeCalled", onResumeCalled)
             startActivity(intent)
             this.finish()
         }
