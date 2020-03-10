@@ -33,6 +33,7 @@ class HomeActivity : AppCompatActivity() {
         playButton.setOnClickListener {
 
             val intent = Intent(this, PlayActivity::class.java)
+            intent.putExtra("LoggedIn", isLoggedIn)
             startActivity(intent)
         }
 

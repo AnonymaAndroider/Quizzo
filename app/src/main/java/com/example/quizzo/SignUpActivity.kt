@@ -9,8 +9,10 @@ import android.util.Log
 import android.widget.EditText
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.core.Tag
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_sign_up.*
 
@@ -21,6 +23,7 @@ class SignUpActivity : AppCompatActivity() {
         setContentView(R.layout.activity_sign_up)
 
         var auth: FirebaseAuth = FirebaseAuth.getInstance()
+        var db: FirebaseFirestore = FirebaseFirestore.getInstance()
 
         SignUpButton.setOnClickListener{
 
@@ -71,4 +74,17 @@ class SignUpActivity : AppCompatActivity() {
             }
         }
     }
+    private fun saveUserToDatabase(){
+        val uid: String? = FirebaseAuth.getInstance().uid
+        val ref: DatabaseReference = FirebaseDatabase.getInstance().getReference( "/Users/$uid")
+
+        val user = User(uid.toString(), signUpUsername.text.toString())
+
+        ref.setValue(user)
+            .addOnSuccessListener {
+                Log.d("RegisterActivity", "User was saved in the database")
+            }
+    }
 }
+
+class User(val uid: String, val Username: String)

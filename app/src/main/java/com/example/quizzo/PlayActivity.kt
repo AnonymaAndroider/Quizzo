@@ -33,6 +33,14 @@ class PlayActivity : AppCompatActivity() {
 
         val radioThemeGroup = findViewById<RadioGroup>(R.id.themeRadioGroup)
         val radioDifficultyGroup = findViewById<RadioGroup>(R.id.difficultyRadioGroup)
+        val isLoggedIn = intent.getBooleanExtra("LoggedIn", false)
+        if(!isLoggedIn){
+            videoGamesButton.isEnabled = false
+            generalKnowledgeButton.isEnabled = false
+            filmButton.isEnabled = false
+            mediumButton.isEnabled = false
+            hardButton.isEnabled = false
+        }
 
         radioThemeGroup.setOnCheckedChangeListener { group, checkedId ->
             val radio : RadioButton = findViewById(checkedId)

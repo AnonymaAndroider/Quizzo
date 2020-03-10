@@ -46,6 +46,7 @@ class ShowScoreActivity : AppCompatActivity() {
         }
         homeButton.setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java)
+            intent.putExtra("LoggedIn", true)
             startActivity(intent)
             this.finish()
         }

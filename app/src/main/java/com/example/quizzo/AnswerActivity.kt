@@ -291,7 +291,11 @@ class AnswerActivity : AppCompatActivity() {
                         if (button1.text == correctAnswer) {
                             button1.setTextColor(Color.GREEN)
                             questionAnswered += 1
-                            score += 1
+                            when(difficulty){
+                                "easy" -> score +=1
+                                "medium" -> score += 3
+                                "hard" -> score += 5
+                            }
                             counter.cancel()
                             if(questionAnswered == amountOfQuestions){
                                 counter.cancel()
@@ -302,6 +306,10 @@ class AnswerActivity : AppCompatActivity() {
                             }
                         } else {
                             button1.setTextColor(Color.RED)
+                            when(difficulty){
+                                "medium" -> score -= 1
+                                "hard" -> score -= 2
+                            }
                         }
                     }
 
@@ -311,7 +319,11 @@ class AnswerActivity : AppCompatActivity() {
                         if (button2.text == correctAnswer) {
                             button2.setTextColor(Color.GREEN)
                             questionAnswered += 1
-                            score += 1
+                            when(difficulty){
+                                "easy" -> score +=1
+                                "medium" -> score += 3
+                                "hard" -> score += 5
+                            }
                             counter.cancel()
                             if(questionAnswered == amountOfQuestions){
                                 counter.cancel()
@@ -322,6 +334,10 @@ class AnswerActivity : AppCompatActivity() {
                             }
                         } else {
                             button2.setTextColor(Color.RED)
+                            when(difficulty){
+                                "medium" -> score -= 1
+                                "hard" -> score -= 2
+                            }
                         }
                     }
 
@@ -331,7 +347,12 @@ class AnswerActivity : AppCompatActivity() {
                         if (button3.text == correctAnswer) {
                             button3.setTextColor(Color.GREEN)
                             questionAnswered += 1
-                            score += 1
+                            when(difficulty){
+                                "easy"-> score += 1
+                                "medium" -> score += 3
+                                "hard" -> score += 5
+                            }
+                            Log.d("score","value: " + score)
                             counter.cancel()
                             if(questionAnswered == amountOfQuestions){
                                 counter.cancel()
@@ -343,6 +364,10 @@ class AnswerActivity : AppCompatActivity() {
                             }
                         } else {
                             button3.setTextColor(Color.RED)
+                            when(difficulty){
+                                "medium" -> score -= 1
+                                "hard" -> score -= 2
+                            }
                         }
                     }
 
@@ -352,7 +377,12 @@ class AnswerActivity : AppCompatActivity() {
                         if (button4.text == correctAnswer) {
                             button4.setTextColor(Color.GREEN)
                             questionAnswered += 1
-                            score += 1
+                            when(difficulty){
+                                "easy"-> score += 1
+                                "medium" -> score += 3
+                                "hard" -> score += 5
+                            }
+                            Log.d("score","value: " + score)
                             counter.cancel()
                             if (questionAnswered == amountOfQuestions) {
                                 counter.cancel()
@@ -363,6 +393,10 @@ class AnswerActivity : AppCompatActivity() {
                             }
                         } else {
                             button4.setTextColor(Color.RED)
+                            when(difficulty){
+                                "medium" -> score -= 1
+                                "hard" -> score -= 2
+                            }
                         }
                     }
                 }
