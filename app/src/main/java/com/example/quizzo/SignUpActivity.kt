@@ -21,9 +21,9 @@ class SignUpActivity : AppCompatActivity() {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
 
-                if(count == 0){
-                    signUpButton.isEnabled = false
-                }
+                //if(count == null){
+                 //   signUpButton.isEnabled = false
+                //}
 
                 if(count > 10){
                     signUpButton.isEnabled = false

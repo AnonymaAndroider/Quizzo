@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Quizzo</string>
+    <string name="title_activity_login">Logga in</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Lösenord</string>
+    <string name="action_sign_in">Registrera eller logga in</string>
+    <string name="action_sign_in_short">Registrera dig</string>
+    <string name="welcome">"Välkommen!"</string>
+    <string name="invalid_password">Lösenordet måste vara större än 5</string>
+    <string name="login_failed">"Inloggningen misslyckades!"</string>
+    <string name="Username">Användarnamn</string>
+    <string name="Login">Logga in</string>
+    <string name="Signup">Registrera dig</string>
+    <string name="usernameToLong">För lång!</string>
+    <string name="highscore">Rekord</string>
+    <string name="help">Hjälp</string>
+    <string name="logout">Logga ut</string>
+    <string name="play">Spela</string>
+    <string name="sign_up">Registrera dig</string>
+    <string name="quizzo">QUIZZO</string>
+    <string name="continue_as_guest">Fortsätt som gäst</string>
+    <string name="choose_theme">Välj tema:</string>
+    <string name="games">Videospel</string>
+    <string name="food">Mat</string>
+    <string name="tv_shows">Tv</string>
+    <string name="easy">Lätt</string>
+    <string name="hard">Svårt</string>
+    <string name="medium">Medium</string>
+    <string name="go">KÖR!</string>
+    <string name="sport">Sport</string>
+    <string name="geography">Geografi</string>
+    <string name="choose_difficulty">Välj svårighetsgrad:</string>
+    <string name="general_knowledge">Allmän kunskap</string>
+    <string name="video_games">Tv-spel</string>
+    <string name="film">Film</string>
+    <string name="great_job">BRA JOBBAT!</string>
+    <string name="home">HEM</string>
+    <string name="retry">FÖRSÖK IGEN</string>
+</resources>
