@@ -39,7 +39,7 @@ class AnswerActivity : AppCompatActivity() {
 
     private val client = OkHttpClient()
     private var score = 0
-    private val amountOfQuestions = 5
+    private val amountOfQuestions = 3
     private var questionAnswered = 0
     private var progressCount = 0
     private lateinit var counter: CountDownTimer
@@ -70,13 +70,62 @@ class AnswerActivity : AppCompatActivity() {
         }).start()
     }
 
+    override fun onPause() {
+        super.onPause()
+        Log.d("onPause", "In onPause")
+    }
 
-    private fun sendThemeAndDifficultyAndScore(score: Int, theme: Int, difficulty: String) {
+    override fun onStop() {
+        super.onStop()
+        Log.d("onStop", "Inside onStop")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        cancelCallToAPI()
+        Log.d("onDestroy", "Inside destroy")
+
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        val retryToken = intent.getStringExtra("token")
+        if(retryToken != null){
+            token = retryToken
+            Log.d("retryToken", token)
+            val loadBar = findViewById<ProgressBar>(R.id.loadBar)
+            Thread(Runnable {
+                runOnUiThread {
+                    loadBar.visibility = View.VISIBLE
+                }
+                try {
+                    Thread.sleep(3000)
+                    fetchQuestions(token){
+                        barProgressTimer()
+                    }
+                } catch (e: InterruptedException){
+                    e.printStackTrace()
+                }
+                runOnUiThread{
+                    loadBar.visibility = View.GONE
+                }
+
+            }).start()
+        }
+    }
+
+
+    private fun sendThemeAndDifficultyAndScoreAndToken(score: Int, theme: Int, difficulty: String) {
         val intent = Intent(this, ShowScoreActivity::class.java)
         intent.putExtra("score", score)
         intent.putExtra("theme", theme)
         intent.putExtra("difficulty", difficulty)
+        intent.putExtra("token", token)
         startActivity(intent)
+        finish()
+        cancelCallToAPI()
     }
 
     private fun barProgressTimer(){
@@ -93,9 +142,11 @@ class AnswerActivity : AppCompatActivity() {
                     questionAnswered += 1
                     counter.cancel()
                     if(questionAnswered == amountOfQuestions){
-                        sendThemeAndDifficultyAndScore(score, theme, difficulty)
+                        sendThemeAndDifficultyAndScoreAndToken(score, theme, difficulty)
                     }
-                    startQuiz()
+                    fetchQuestions(token){
+                        barProgressTimer()
+                    }
                 }
 
                 override fun onTick(millisUntilFinished: Long) {
@@ -115,6 +166,7 @@ class AnswerActivity : AppCompatActivity() {
 
         fetchTokens {
             fetchedToken ->
+            Log.d("Fetched token:", token)
             fetchQuestions(fetchedToken){
                 barProgressTimer()
             }
@@ -124,7 +176,7 @@ class AnswerActivity : AppCompatActivity() {
     private fun fetchTokens(callback: (String)->Unit){
         val tokenUrl = "https://opentdb.com/api_token.php?command=request"
         val retrieveToken = Request.Builder()
-            .url(tokenUrl)
+            .url(tokenUrl).tag("FetchTokens")
             .build()
         client.newCall(retrieveToken).enqueue(object: Callback {
 
@@ -145,6 +197,30 @@ class AnswerActivity : AppCompatActivity() {
         })
     }
 
+    private fun cancelCallToAPI(){
+        Log.d("cancelCall", "inside cancelCalls")
+        for(call : Call in client.dispatcher.runningCalls() ){
+            Log.d("runningcalls", "inside runningcalls")
+            if(call.request().tag()?.equals("FetchQuestions")!!){
+                call.cancel()
+
+            }
+            if(call.request().tag()?.equals("FetchTokens")!!){
+                call.cancel()
+            }
+        }
+        for(call : Call in client.dispatcher.queuedCalls()){
+            Log.d("queuedcalls", "inside queuedcalls")
+            if(call.request().tag()?.equals("FetchQuestions")!!){
+                call.cancel()
+
+            }
+            if(call.request().tag()?.equals("FetchTokens")!!){
+                call.cancel()
+            }
+        }
+    }
+
 
     private fun fetchQuestions(aToken: String, callback: ()->Unit){
 
@@ -152,10 +228,10 @@ class AnswerActivity : AppCompatActivity() {
         val difficulty = intent.getStringExtra("difficulty")
 
         //val resetToken = "https://opntdb.com/api_token.php?command=reset&token=$token"
-        val url = "https://opentdb.com/api.php?amount=10&category=$theme&difficulty=$difficulty&type=multiple&token=$aToken"
+        val url = "https://opentdb.com/api.php?amount=1&category=$theme&difficulty=$difficulty&type=multiple&token=$aToken"
         Log.d("url:", url)
         val request = Request.Builder()
-            .url(url)
+            .url(url).tag("FetchQuestions")
             .build()
         client.newCall(request).enqueue(object: Callback {
 
@@ -174,14 +250,14 @@ class AnswerActivity : AppCompatActivity() {
                 val incorrectAnswer1 = result.incorrect_answers[0].toSpanned()
                 val incorrectAnswer2 = result.incorrect_answers[1].toSpanned()
                 val incorrectAnswer3 = result.incorrect_answers[2].toSpanned()
-                val questions = listOf(
+                val alternatives = listOf(
                     correctAnswer,
                     incorrectAnswer1,
                     incorrectAnswer2,
                     incorrectAnswer3
                 )
-                Log.d("questions", questions.toString())
-                shuffle(questions)
+                Log.d("questions", alternatives.toString())
+                shuffle(alternatives)
 
                 runOnUiThread {
 
@@ -193,19 +269,19 @@ class AnswerActivity : AppCompatActivity() {
                     questionText.text = question
                     themeText.text = questionCategory
 
-                    button1.text = questions[0]
+                    button1.text = alternatives[0]
                     button1.setTextColor(Color.BLACK)
                     button1.isEnabled = true
 
-                    button2.text = questions[1]
+                    button2.text = alternatives[1]
                     button2.setTextColor(Color.BLACK)
                     button2.isEnabled = true
 
-                    button3.text = questions[2]
+                    button3.text = alternatives[2]
                     button3.setTextColor(Color.BLACK)
                     button3.isEnabled = true
 
-                    button4.text = questions[3]
+                    button4.text = alternatives[3]
                     button4.setTextColor(Color.BLACK)
                     button4.isEnabled = true
 
@@ -218,10 +294,12 @@ class AnswerActivity : AppCompatActivity() {
                             score += 1
                             counter.cancel()
                             if(questionAnswered == amountOfQuestions){
-                                sendThemeAndDifficultyAndScore(score, theme, difficulty)
-                                finish()
+                                counter.cancel()
+                                sendThemeAndDifficultyAndScoreAndToken(score, theme, difficulty)
                             }
-                            startQuiz()
+                            fetchQuestions(token){
+                                barProgressTimer()
+                            }
                         } else {
                             button1.setTextColor(Color.RED)
                         }
@@ -236,10 +314,12 @@ class AnswerActivity : AppCompatActivity() {
                             score += 1
                             counter.cancel()
                             if(questionAnswered == amountOfQuestions){
-                                sendThemeAndDifficultyAndScore(score, theme, difficulty)
-                                finish()
+                                counter.cancel()
+                                sendThemeAndDifficultyAndScoreAndToken(score, theme, difficulty)
                             }
-                            startQuiz()
+                            fetchQuestions(token){
+                                barProgressTimer()
+                            }
                         } else {
                             button2.setTextColor(Color.RED)
                         }
@@ -254,11 +334,13 @@ class AnswerActivity : AppCompatActivity() {
                             score += 1
                             counter.cancel()
                             if(questionAnswered == amountOfQuestions){
-                                sendThemeAndDifficultyAndScore(score, theme, difficulty)
-                                finish()
+                                counter.cancel()
+                                sendThemeAndDifficultyAndScoreAndToken(score, theme, difficulty)
                             }
 
-                            startQuiz()
+                            fetchQuestions(token){
+                                barProgressTimer()
+                            }
                         } else {
                             button3.setTextColor(Color.RED)
                         }
@@ -273,10 +355,12 @@ class AnswerActivity : AppCompatActivity() {
                             score += 1
                             counter.cancel()
                             if (questionAnswered == amountOfQuestions) {
-                                sendThemeAndDifficultyAndScore(score, theme, difficulty)
-                                finish()
+                                counter.cancel()
+                                sendThemeAndDifficultyAndScoreAndToken(score, theme, difficulty)
                             }
-                            startQuiz()
+                            fetchQuestions(token){
+                                barProgressTimer()
+                            }
                         } else {
                             button4.setTextColor(Color.RED)
                         }
