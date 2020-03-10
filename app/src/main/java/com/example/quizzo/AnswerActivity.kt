@@ -209,7 +209,7 @@ class AnswerActivity : AppCompatActivity() {
                 call.cancel()
             }
         }
-        for(call : Call in client.dispatcher.queuedCalls()){
+        /*for(call : Call in client.dispatcher.queuedCalls()){
             Log.d("queuedcalls", "inside queuedcalls")
             if(call.request().tag()?.equals("FetchQuestions")!!){
                 call.cancel()
@@ -218,7 +218,7 @@ class AnswerActivity : AppCompatActivity() {
             if(call.request().tag()?.equals("FetchTokens")!!){
                 call.cancel()
             }
-        }
+        }*/
     }
 
 
