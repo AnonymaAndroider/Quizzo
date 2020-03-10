@@ -27,6 +27,7 @@ class ShowScoreActivity : AppCompatActivity() {
         val score = intent.getIntExtra("score", 0)
         val theme = intent.getIntExtra("theme", 0)
         val difficulty = intent.getStringExtra("difficulty")
+        val token = intent.getStringExtra("token")
         scoreText.text = "Your score: $score"
 
 
@@ -34,6 +35,7 @@ class ShowScoreActivity : AppCompatActivity() {
             val intent = Intent(this, AnswerActivity::class.java)
             intent.putExtra("theme", theme)
             intent.putExtra("difficulty", difficulty)
+            intent.putExtra("token", token)
             startActivity(intent)
             this.finish()
         }
