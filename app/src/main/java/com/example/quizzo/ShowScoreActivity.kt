@@ -5,6 +5,7 @@ import android.content.Intent
 import android.graphics.drawable.AnimationDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.constraintlayout.widget.ConstraintLayout
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.activity_show_score.*
@@ -24,15 +25,20 @@ class ShowScoreActivity : AppCompatActivity() {
         frameAnimation.setExitFadeDuration(4500)
         frameAnimation.start()
 
-        val score = intent.getIntExtra("score", 0)
+        var score = intent.getIntExtra("score", 0)
         val theme = intent.getIntExtra("theme", 0)
         val difficulty = intent.getStringExtra("difficulty")
         val token = intent.getStringExtra("token")
+        if(score < 0){
+            score = 0
+        }
         scoreText.text = "Your score: $score"
-
+        //Fix isLoggedIn
+        val isLoggedIn = intent.getBooleanExtra("LoggedIn", false)
+        Log.d("LoggedIn", isLoggedIn.toString())
 
         retryButton.setOnClickListener {
-            var onResumeCalled = true
+            val onResumeCalled = true
             val intent = Intent(this, AnswerActivity::class.java)
             intent.putExtra("theme", theme)
             intent.putExtra("difficulty", difficulty)
@@ -48,7 +54,7 @@ class ShowScoreActivity : AppCompatActivity() {
         }
         homeButton.setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java)
-            intent.putExtra("LoggedIn", true)
+            intent.putExtra("LoggedIn", isLoggedIn)
             startActivity(intent)
             this.finish()
         }

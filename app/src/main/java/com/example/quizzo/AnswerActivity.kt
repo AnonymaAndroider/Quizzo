@@ -94,8 +94,6 @@ class AnswerActivity : AppCompatActivity() {
         super.onDestroy()
         Log.d("onDestroy", "Inside destroy")
         cancelCallToAPI()
-
-
     }
 
     override fun onResume() {
@@ -135,10 +133,12 @@ class AnswerActivity : AppCompatActivity() {
 
     private fun sendThemeAndDifficultyAndScoreAndToken(score: Int, theme: Int, difficulty: String) {
         val intent = Intent(this, ShowScoreActivity::class.java)
+        val loggedIn = intent.getBooleanExtra("LoggedIn", false)
         intent.putExtra("score", score)
         intent.putExtra("theme", theme)
         intent.putExtra("difficulty", difficulty)
         intent.putExtra("token", token)
+        intent.putExtra("LoggedIn", loggedIn)
         startActivity(intent)
         finish()
     }
@@ -301,29 +301,33 @@ class AnswerActivity : AppCompatActivity() {
                     button4.isEnabled = true
 
                     button1.setOnClickListener {
-
                         button1.isClickable = false
-                        if (button1.text == correctAnswer) {
+                        questionAnswered += 1
+                        if(questionAnswered == amountOfQuestions){
+                            counter.cancel()
+                            sendThemeAndDifficultyAndScoreAndToken(score, theme, difficulty)
+                        }
+                        else if (button1.text == correctAnswer) {
                             button1.setTextColor(Color.GREEN)
-                            questionAnswered += 1
-                            when(difficulty){
-                                "easy" -> score +=1
+                            when (difficulty) {
+                                "easy" -> score += 1
                                 "medium" -> score += 3
                                 "hard" -> score += 5
                             }
                             counter.cancel()
-                            if(questionAnswered == amountOfQuestions){
-                                counter.cancel()
-                                sendThemeAndDifficultyAndScoreAndToken(score, theme, difficulty)
-                            }
                             fetchQuestions(token){
                                 barProgressTimer()
                             }
-                        } else {
+                        }
+                        else if(button1.text != correctAnswer){
                             button1.setTextColor(Color.RED)
-                            when(difficulty){
+                            when(difficulty) {
                                 "medium" -> score -= 1
                                 "hard" -> score -= 2
+                            }
+                            counter.cancel()
+                            fetchQuestions(token){
+                                barProgressTimer()
                             }
                         }
                     }
@@ -331,27 +335,32 @@ class AnswerActivity : AppCompatActivity() {
                     button2.setOnClickListener {
 
                         button2.isClickable = false
-                        if (button2.text == correctAnswer) {
+                        questionAnswered += 1
+                        if(questionAnswered == amountOfQuestions){
+                            counter.cancel()
+                            sendThemeAndDifficultyAndScoreAndToken(score, theme, difficulty)
+                        }
+                        else if (button2.text == correctAnswer) {
                             button2.setTextColor(Color.GREEN)
-                            questionAnswered += 1
-                            when(difficulty){
-                                "easy" -> score +=1
+                            when (difficulty) {
+                                "easy" -> score += 1
                                 "medium" -> score += 3
                                 "hard" -> score += 5
                             }
                             counter.cancel()
-                            if(questionAnswered == amountOfQuestions){
-                                counter.cancel()
-                                sendThemeAndDifficultyAndScoreAndToken(score, theme, difficulty)
-                            }
                             fetchQuestions(token){
                                 barProgressTimer()
                             }
-                        } else {
+                        }
+                        else if(button2.text != correctAnswer){
                             button2.setTextColor(Color.RED)
-                            when(difficulty){
+                            when(difficulty) {
                                 "medium" -> score -= 1
                                 "hard" -> score -= 2
+                            }
+                            counter.cancel()
+                            fetchQuestions(token){
+                                barProgressTimer()
                             }
                         }
                     }
@@ -359,29 +368,32 @@ class AnswerActivity : AppCompatActivity() {
                     button3.setOnClickListener {
 
                         button3.isClickable = false
-                        if (button3.text == correctAnswer) {
+                        questionAnswered += 1
+                        if(questionAnswered == amountOfQuestions){
+                            counter.cancel()
+                            sendThemeAndDifficultyAndScoreAndToken(score, theme, difficulty)
+                        }
+                        else if (button3.text == correctAnswer) {
                             button3.setTextColor(Color.GREEN)
-                            questionAnswered += 1
-                            when(difficulty){
-                                "easy"-> score += 1
+                            when (difficulty) {
+                                "easy" -> score += 1
                                 "medium" -> score += 3
                                 "hard" -> score += 5
                             }
-                            Log.d("score","value: " + score)
                             counter.cancel()
-                            if(questionAnswered == amountOfQuestions){
-                                counter.cancel()
-                                sendThemeAndDifficultyAndScoreAndToken(score, theme, difficulty)
-                            }
-
                             fetchQuestions(token){
                                 barProgressTimer()
                             }
-                        } else {
+                        }
+                        else if(button3.text != correctAnswer){
                             button3.setTextColor(Color.RED)
-                            when(difficulty){
+                            when(difficulty) {
                                 "medium" -> score -= 1
                                 "hard" -> score -= 2
+                            }
+                            counter.cancel()
+                            fetchQuestions(token){
+                                barProgressTimer()
                             }
                         }
                     }
@@ -389,28 +401,32 @@ class AnswerActivity : AppCompatActivity() {
                     button4.setOnClickListener {
 
                         button4.isClickable = false
-                        if (button4.text == correctAnswer) {
+                        questionAnswered += 1
+                        if(questionAnswered == amountOfQuestions){
+                            counter.cancel()
+                            sendThemeAndDifficultyAndScoreAndToken(score, theme, difficulty)
+                        }
+                        else if (button4.text == correctAnswer) {
                             button4.setTextColor(Color.GREEN)
-                            questionAnswered += 1
-                            when(difficulty){
-                                "easy"-> score += 1
+                            when (difficulty) {
+                                "easy" -> score += 1
                                 "medium" -> score += 3
                                 "hard" -> score += 5
                             }
-                            Log.d("score","value: " + score)
                             counter.cancel()
-                            if (questionAnswered == amountOfQuestions) {
-                                counter.cancel()
-                                sendThemeAndDifficultyAndScoreAndToken(score, theme, difficulty)
-                            }
                             fetchQuestions(token){
                                 barProgressTimer()
                             }
-                        } else {
+                        }
+                        else if(button4.text != correctAnswer){
                             button4.setTextColor(Color.RED)
-                            when(difficulty){
+                            when(difficulty) {
                                 "medium" -> score -= 1
                                 "hard" -> score -= 2
+                            }
+                            counter.cancel()
+                            fetchQuestions(token){
+                                barProgressTimer()
                             }
                         }
                     }

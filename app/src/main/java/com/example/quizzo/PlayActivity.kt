@@ -3,12 +3,15 @@ package com.example.quizzo
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_play.*
 
 class PlayActivity : AppCompatActivity() {
+
+    private var isLoggedIn = false
 
     companion object {
         const val sport = 21
@@ -22,6 +25,8 @@ class PlayActivity : AppCompatActivity() {
         val intent = Intent(this, AnswerActivity::class.java)
         intent.putExtra("theme", theme)
         intent.putExtra("difficulty", difficulty)
+        Log.d("LoggedInPlay", isLoggedIn.toString())
+        intent.putExtra("LoggedIn", isLoggedIn)
         startActivity(intent)
     }
 
@@ -33,7 +38,7 @@ class PlayActivity : AppCompatActivity() {
 
         val radioThemeGroup = findViewById<RadioGroup>(R.id.themeRadioGroup)
         val radioDifficultyGroup = findViewById<RadioGroup>(R.id.difficultyRadioGroup)
-        val isLoggedIn = intent.getBooleanExtra("LoggedIn", false)
+        isLoggedIn = intent.getBooleanExtra("LoggedIn", false)
         if(!isLoggedIn){
             videoGamesButton.isEnabled = false
             generalKnowledgeButton.isEnabled = false

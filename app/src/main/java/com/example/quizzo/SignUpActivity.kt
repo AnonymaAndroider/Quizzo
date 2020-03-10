@@ -64,6 +64,7 @@ class SignUpActivity : AppCompatActivity() {
                     .addOnCompleteListener(this){ task ->
                         if(task.isSuccessful){
                             val user = auth.currentUser
+                            saveUserToDatabase()
                             val intent = Intent(this, LoginActivity::class.java)
                             startActivity(intent)
                             finish()
