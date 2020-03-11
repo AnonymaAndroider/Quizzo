@@ -37,4 +37,8 @@
     <string name="great_job">GREAT JOB!</string>
     <string name="home">HOME</string>
     <string name="retry">RETRY</string>
+    <string name="Score">Score</string>
+    <string name="need_to_signed_up_save_score">You need to be signed up to be able to save your score</string>
+    <string name="I_want_to_sign_up">I want to sign up now!</string>
+    <string name="another_time">Maybe another time</string>
 </resources>

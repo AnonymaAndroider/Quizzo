@@ -37,4 +37,8 @@
     <string name="great_job">BRA JOBBAT!</string>
     <string name="home">HEM</string>
     <string name="retry">FÖRSÖK IGEN</string>
+    <string name="Score">Poäng</string>
+    <string name="need_to_signed_up_save_score">Du behöver skapa ett konto och logga in för att spara din poäng</string>
+    <string name="I_want_to_sign_up">Jag vill skapa ett konto nu!</string>
+    <string name="another_time">Kanske senare</string>
 </resources>

@@ -39,7 +39,7 @@ class AnswerActivity : AppCompatActivity() {
 
     private val client = OkHttpClient()
     private var score = 0
-    private val amountOfQuestions = 3
+    private val amountOfQuestions = 5
     private var questionAnswered = 0
     private var progressCount = 0
     private lateinit var counter: CountDownTimer
@@ -47,12 +47,15 @@ class AnswerActivity : AppCompatActivity() {
     private val countDownInterval = 100
     private var token: String = ""
     private var onResumeCalled = true
+    private var isLoggedIn = false
+
 
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_answer)
+        isLoggedIn = intent.getBooleanExtra("LoggedIn", false)
         Log.d("inside onCreate", "Inside onCreate")
         onResumeCalled = false
         val resumeTrue = intent.getBooleanExtra("onResumeCalled", false)
@@ -133,12 +136,12 @@ class AnswerActivity : AppCompatActivity() {
 
     private fun sendThemeAndDifficultyAndScoreAndToken(score: Int, theme: Int, difficulty: String) {
         val intent = Intent(this, ShowScoreActivity::class.java)
-        val loggedIn = intent.getBooleanExtra("LoggedIn", false)
+        Log.d("LoggedInAnswer", isLoggedIn.toString())
         intent.putExtra("score", score)
         intent.putExtra("theme", theme)
         intent.putExtra("difficulty", difficulty)
         intent.putExtra("token", token)
-        intent.putExtra("LoggedIn", loggedIn)
+        intent.putExtra("LoggedIn", isLoggedIn)
         startActivity(intent)
         finish()
     }
