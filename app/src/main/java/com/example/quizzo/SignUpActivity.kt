@@ -87,5 +87,3 @@ class SignUpActivity : AppCompatActivity() {
             }
     }
 }
-
-class User(val uid: String, val Username: String, var highscore: Int)
