@@ -46,7 +46,7 @@ class HighscoreActivity : AppCompatActivity() {
 
         var ref = FirebaseDatabase.getInstance().reference
 
-        ref.child("Users").orderByValue().addListenerForSingleValueEvent(object : ValueEventListener {
+        ref.child("Users").orderByChild("highscore").addListenerForSingleValueEvent(object : ValueEventListener {
 
             override fun onCancelled(error: DatabaseError) {
                 Log.e("onCancelledError", "onCancelled", error.toException())
@@ -58,7 +58,7 @@ class HighscoreActivity : AppCompatActivity() {
                         var username = ds.child("username").getValue(String::class.java)
                         if(highScore != null && username != null) {
                             scoreList.add(User("", username.toString(), highScore))
-                            stringList = scoreList.map { it.Username + " " + "Score:" + " " + it.highscore }
+                            stringList = scoreList.map { it.Username + " " + "Score:" + " " + it.highscore }.reversed()
                             Log.d("stringList:", stringList.toString())
                         }
                     }

@@ -47,45 +47,6 @@ class PlayActivity : AppCompatActivity() {
             hardButton.isEnabled = false
         }
 
-        radioThemeGroup.setOnCheckedChangeListener { group, checkedId ->
-            val radio : RadioButton = findViewById(checkedId)
-
-            when(radio){
-                sportButton -> {
-                    Toast.makeText(this, "Sport", Toast.LENGTH_SHORT).show()
-
-                }
-                geographyButton -> {
-                    Toast.makeText(this, "Geography", Toast.LENGTH_SHORT).show()
-                }
-                videoGamesButton -> {
-                    Toast.makeText(this, "Food", Toast.LENGTH_SHORT).show()
-                }
-                filmButton -> {
-                    Toast.makeText(this, "Tv-shows", Toast.LENGTH_SHORT).show()
-                }
-                generalKnowledgeButton -> {
-                    Toast.makeText(this, "Games", Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
-
-        radioDifficultyGroup.setOnCheckedChangeListener { group, checkedId ->
-            val radio : RadioButton = findViewById(checkedId)
-            when(radio){
-                easyButton -> {
-                    Toast.makeText(this, "Easy", Toast.LENGTH_SHORT).show()
-                }
-                mediumButton -> {
-                    Toast.makeText(this, "Medium", Toast.LENGTH_SHORT).show()
-                }
-                hardButton -> {
-                    Toast.makeText(this, "Hard", Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
-
-
         goButton.setOnClickListener {
 
             when {

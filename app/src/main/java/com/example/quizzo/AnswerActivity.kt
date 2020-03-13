@@ -60,7 +60,7 @@ class AnswerActivity : AppCompatActivity() {
         onResumeCalled = false
         val resumeTrue = intent.getBooleanExtra("onResumeCalled", false)
         onResumeCalled = resumeTrue
-        Log.d("onResumeCalled OnCretae", onResumeCalled.toString())
+        Log.d("onResumeCalled OnCreate", onResumeCalled.toString())
         if(!onResumeCalled) {
             val loadBar = findViewById<ProgressBar>(R.id.loadBar)
             Thread(Runnable {
@@ -82,6 +82,10 @@ class AnswerActivity : AppCompatActivity() {
     }
 
 
+    override fun onBackPressed() {
+        counter.cancel()
+        finish()
+    }
 
     override fun onPause() {
         super.onPause()
