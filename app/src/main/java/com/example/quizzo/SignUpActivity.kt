@@ -74,6 +74,9 @@ class SignUpActivity : AppCompatActivity() {
                     }
             }
         }
+
+
+
     }
     private fun saveUserToDatabase(){
         val uid: String? = FirebaseAuth.getInstance().uid
