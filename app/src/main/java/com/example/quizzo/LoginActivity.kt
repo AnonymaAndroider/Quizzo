@@ -5,6 +5,7 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
+import android.text.TextUtils.isEmpty
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
@@ -54,21 +55,34 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 R.id.loginPassword
             ).editableText.toString()
 
-            auth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this) { task ->
-                    if (task.isSuccessful) {
-                        val intent = Intent(this, HomeActivity::class.java)
-                        intent.putExtra("LoggedIn", true)
-                        startActivity(intent)
-                        finish()
-                    } else {
-                        Toast.makeText(
-                            baseContext,
-                            "Login failed or account does not exist",
-                            Toast.LENGTH_SHORT
-                        ).show()
+            if(isEmpty(email)){
+
+                Toast.makeText(this, R.string.emailValidation, Toast.LENGTH_SHORT).show()
+            }
+            else if (isEmpty(password)){
+
+                Toast.makeText(this, R.string.passwordValidation, Toast.LENGTH_SHORT).show()
+            }
+            else if(android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches() == false){
+                Toast.makeText(this, R.string.notValidEmail, Toast.LENGTH_SHORT).show()
+            }
+            else{
+                auth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this) { task ->
+                        if (task.isSuccessful) {
+                            val intent = Intent(this, HomeActivity::class.java)
+                            intent.putExtra("LoggedIn", true)
+                            startActivity(intent)
+                            finish()
+                        } else {
+                            Toast.makeText(
+                                baseContext,
+                                R.string.dbEmailNotValid,
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
                     }
-                }
+            }
         }
     }
 

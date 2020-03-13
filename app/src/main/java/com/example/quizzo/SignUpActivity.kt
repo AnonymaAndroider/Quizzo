@@ -44,19 +44,19 @@ class SignUpActivity : AppCompatActivity() {
             ).editableText.toString()
 
             if(email.length < 5){
-                Toast.makeText(this, "Please enter a valid email", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, R.string.emailValidation, Toast.LENGTH_SHORT).show()
             }
 
             else if(username.length < 2){
-                Toast.makeText(this, "Username must be at least 2 characters", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, R.string.unToShort, Toast.LENGTH_SHORT).show()
             }
 
             else if(password.length < 5){
-                Toast.makeText(this, "Password must be at least 5 characters", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, R.string.pwToShort, Toast.LENGTH_SHORT).show()
             }
 
             else if(password != passwordCheck){
-                Toast.makeText(this, "Password does not match", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, R.string.pwNotMatch, Toast.LENGTH_SHORT).show()
             }
 
             else{
@@ -69,14 +69,11 @@ class SignUpActivity : AppCompatActivity() {
                             startActivity(intent)
                             finish()
                         } else{
-                            Toast.makeText(this, "Failed signing up, try again", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this, R.string.signupFail, Toast.LENGTH_SHORT).show()
                         }
                     }
             }
         }
-
-
-
     }
     private fun saveUserToDatabase(){
         val uid: String? = FirebaseAuth.getInstance().uid

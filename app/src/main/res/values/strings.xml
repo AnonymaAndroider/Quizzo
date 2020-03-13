@@ -41,4 +41,17 @@
     <string name="need_to_signed_up_save_score">You need to be signed up to be able to save your score</string>
     <string name="I_want_to_sign_up">I want to sign up now!</string>
     <string name="another_time">Maybe another time</string>
+    <string name="help_one">1. Choose a category you want and then the game difficulty. </string>
+    <string name="help_two">2. Depending on the difficulty you choose, you will get x ammount of points.\nEasy: 1p\nMedium: 3p\nHard: 5p </string>
+    <string name="help_three">3. Read the question and press one of the answers you think is the right one.</string>
+    <string name="help_four">4. For every question you see you have to answer within 10 seconds or the question will change. \n if You get a question wrong you will get a point deduction.\n Easy: none\n Medium: 1p\n Hard: 2p</string>
+    <string name="help_five">5. After the questions are done you will get a score that will be put on the highscore list. If you are good enough ;)</string>
+    <string name="emailValidation">Must enter Email!</string>
+    <string name="passwordValidation">must enter Password!</string>
+    <string name="notValidEmail">Not a valid Email!</string>
+    <string name="dbEmailNotValid">Login failed or account does not exist</string>
+    <string name="unToShort">Username must be at least 2 characters</string>
+    <string name="pwToShort">Password must be at least 5 characters</string>
+    <string name="pwNotMatch">Password does not match!</string>
+    <string name="signupFail">Failed signing up, try again</string>
 </resources>

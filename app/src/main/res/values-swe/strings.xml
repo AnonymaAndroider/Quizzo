@@ -41,4 +41,18 @@
     <string name="need_to_signed_up_save_score">Du behöver skapa ett konto och logga in för att spara din poäng</string>
     <string name="I_want_to_sign_up">Jag vill skapa ett konto nu!</string>
     <string name="another_time">Kanske senare</string>
+    <string name="help_five">5. Efter frågorna är klara kommer du få ett resultat med hur mycket poäng du fick och de kommer läggas på en rekord tavla. Om du är bra nog ;)</string>
+    <string name="help_one">1. Välj en kategori samt svårighetsgrad.</string>
+    <string name="help_two">Beroende på svårighetsgraden kommer du få olika mycket poäng för varje fråga.\\n Lätt: 1p\\n Medium: 3p\\ Svår: 5p</string>
+    <string name="help_three">Läs frågan och välj det svar du tror är det rätta</string>
+    <string name="help_four">För varje frågadu ser får du 10 sekunder på dig att svara. Om du svarar fel får du poängavdrag.\\n Lätt: 0\\n Medium: 1p\\n Svår: 2p</string>
+    <string name="emailValidation">Måste fylla i Email</string>
+    <string name="passwordValidation">måste fylla i Lösenord!</string>
+    <string name="notValidEmail">Inte en giltig Email!</string>
+    <string name="dbEmailNotValid">Inloggningen misslyckades eller så finns inte kontot</string>
+    <string name="prompt_passwordRepeat">Upprepa lösenord</string>
+    <string name="pwNotMatch">Lösenord matchar inte!</string>
+    <string name="pwToShort">Lösenordet måste vara minst 5 karaktärer långt!</string>
+    <string name="signupFail">Inloggning misslyckades, försök igen</string>
+    <string name="unToShort">Användarnamnet måste vara minst 2 karaktärer långt</string>
 </resources>
