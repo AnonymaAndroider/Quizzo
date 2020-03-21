@@ -56,9 +56,9 @@ class HighscoreActivity : AppCompatActivity() {
                     for(ds in dataSnapShot.children){
                         var highScore = ds.child("highscore").getValue(Int::class.java)
                         var username = ds.child("username").getValue(String::class.java)
-                        if(highScore != null && username != null) {
+                        if(highScore != null && username != null && highScore > 0) {
                             scoreList.add(User("", username.toString(), highScore))
-                            stringList = scoreList.map { it.Username + " " + "Score:" + " " + it.highscore }.reversed()
+                            stringList = scoreList.map { it.Username + " " + " " + it.highscore + "p" }.reversed()
                             Log.d("stringList:", stringList.toString())
                         }
                     }

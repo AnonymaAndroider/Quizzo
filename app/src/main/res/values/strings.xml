@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Quizzo</string>
     <string name="title_activity_login">Login</string>
@@ -7,12 +8,12 @@
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="welcome">"Welcome !"</string>
-    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="invalid_password">Password must be at least 5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="Username">Username</string>
     <string name="Login">Login</string>
     <string name="Signup">Sign up</string>
-    <string name="usernameToLong">To long!</string>
+    <string name="usernameToLong">Too long!</string>
     <string name="highscore">Highscore</string>
     <string name="help">Help</string>
     <string name="logout">Logout</string>
@@ -46,12 +47,12 @@
     <string name="help_three">3. Read the question and press one of the answers you think is the right one.</string>
     <string name="help_four">4. For every question you see you have to answer within 10 seconds or the question will change. \n if You get a question wrong you will get a point deduction.\n Easy: none\n Medium: 1p\n Hard: 2p</string>
     <string name="help_five">5. After the questions are done you will get a score that will be put on the highscore list. If you are good enough ;)</string>
-    <string name="emailValidation">Must enter Email!</string>
-    <string name="passwordValidation">must enter Password!</string>
-    <string name="notValidEmail">Not a valid Email!</string>
+    <string name="emailValidation">Please enter a valid email</string>
+    <string name="passwordValidation">Password is not valid</string>
+    <string name="notValidEmail">Not a valid email</string>
     <string name="dbEmailNotValid">Login failed or account does not exist</string>
     <string name="unToShort">Username must be at least 2 characters</string>
     <string name="pwToShort">Password must be at least 5 characters</string>
-    <string name="pwNotMatch">Password does not match!</string>
+    <string name="pwNotMatch">Password does not match</string>
     <string name="signupFail">Failed signing up, try again</string>
 </resources>
